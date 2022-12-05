@@ -1,0 +1,25 @@
+
+*{
+    margin: 0;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #268C48;
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+main a{
+    text-decoration: none;
+    color: aliceblue; 
+    padding: 3%;
+    border: 4px;
+    
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

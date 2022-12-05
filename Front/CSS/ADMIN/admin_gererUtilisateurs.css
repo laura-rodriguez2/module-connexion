@@ -1,0 +1,32 @@
+
+
+.main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #268C48;
+    margin-top: 3%;
+    padding-top: 3%;
+    color: aliceblue;
+}
+
+td{
+    color: rgb(113, 238, 136);
+}
+
+hr{
+    margin: 12px;
+}
+
+.settings{
+    color: rgb(92, 0, 0);
+}
+footer{
+    margin-top: 15px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+@media(max-width:768px){
+
+    }
