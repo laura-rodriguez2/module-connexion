@@ -24,11 +24,13 @@ session_start();
     </header>
 
     <main>
-        <!-- <div class="img">
-
-</div> -->
         <div class="div">
-            <p>Connectez vous</p>
+            <a href="connexion.php" class="btn">
+                Connexion
+            </a>
+            <a href="inscription.php" class="btn">
+                Inscription
+            </a>
         </div>
 
     </main>

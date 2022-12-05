@@ -8,13 +8,13 @@
 }
 
 .lien_connexion{
-    color: #8ee6ab;
+    color: #ffffff;
 }
 
 #form_connec{
     color: aliceblue;
     text-align: center;
-    background-color: #268C48;
+    background-color: #8584ad;
     padding-bottom: 10px;
     width: 100%;
 }
@@ -52,7 +52,7 @@
     border-color: aliceblue;
     font-size: large;
     border-radius: 15px;
-    background-color: #268C48;
+    background-color: #8584ad;
     padding: 15px 40px;
     cursor: pointer;
 }

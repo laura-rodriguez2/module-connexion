@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if(isset($erreur)){
+if (isset($erreur)) {
     echo $erreur;
 }
 ?>
@@ -34,28 +34,27 @@ if(isset($erreur)){
 </head>
 
 <body>
-<header>
-    <?php
-    require('HEADER_FOOTER/header.php');
-    ?>
-</header>
+    <header>
+        <?php
+        require('HEADER_FOOTER/header.php');
+        ?>
+    </header>
 
-<main>
-    <h1 id="title">S'inscrire</h1><br>
+    <main>
+        <h1 id="title">S'inscrire</h1><br>
         <form id="form_inscription" action="" method="POST">
 
-            <img class="img" src="../MEDIAS/Autres/linefeuillev2.png" alt="Banderoles de plantes">
-        <div id="name">
-            <div class="input">
-                <p>Nom :</p>
-                <input class="box-input" type="text" name="nom"  required />
-            </div>
+            <div id="name">
+                <div class="input">
+                    <p>Nom :</p>
+                    <input class="box-input" type="text" name="nom" required />
+                </div>
 
-            <div class="input">
-                <p>Prénom :</p>
-                <input class="box-input" type="text" name="prenom" required /> 
+                <div class="input">
+                    <p>Prénom :</p>
+                    <input class="box-input" type="text" name="prenom" required />
+                </div>
             </div>
-        </div>
             <div class="input">
                 <p>Email :</p>
                 <input class="mail" id="email" type="text" name="email" required />
@@ -71,24 +70,20 @@ if(isset($erreur)){
                 <input class="text" type="password" name="password2" required="">
             </div>
 
-           <br> <input id="bouton_inscri_inscription" type="submit" name="submit" value="S'inscrire" /><br><br>
+            <br> <input id="bouton_inscri_inscription" type="submit" name="submit" value="S'inscrire" /><br><br>
 
             <p class="lr_h2">Déjà inscrit ? <a class="lien_connexion" href="connexion.php">Connectez-vous !</a></p>
         </form>
 
-    <script src="../../Back/js/verifications.js"></script>
-        <?php 
+        <script src="../../Back/js/verifications.js"></script>
 
-// echo $erreur;
+    </main>
 
+    <footer>
+        <?php
+        require('HEADER_FOOTER/footer.php');
         ?>
-</main>
-
-<footer>
-    <?php
-    require('HEADER_FOOTER/footer.php');
-    ?>
-</footer>
+    </footer>
 </body>
 
 </html>

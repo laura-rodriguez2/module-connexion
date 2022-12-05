@@ -2,7 +2,7 @@
 // include_once('bddco.php');
 
     function get_pdo(): PDO {
-        return new PDO('mysql:host=localhost;dbname=lovatipaysages', 'root', '', [
+        return new PDO('mysql:host=localhost;dbname=module_connexion', 'root', '', [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
