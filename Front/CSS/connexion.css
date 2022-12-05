@@ -8,7 +8,7 @@
 }
 
 .lien_connexion{
-    color: #ffffff;
+    color: #1b2f31;
 }
 
 #form_connec{
@@ -47,16 +47,21 @@
     margin: 1px;
 }
 
-#bouton_co{
-    color: white;
-    border-color: aliceblue;
+#bouton_co {
+    color: #8584ad;
+    background-color: #1b2f31;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
     font-size: large;
-    border-radius: 15px;
-    background-color: #8584ad;
-    padding: 15px 40px;
-    cursor: pointer;
+    font-weight: 600;
 }
-
+#bouton_co:hover{
+    background-color: #8584ad;
+    color: #1b2f31;
+}
 footer{
     margin-top: 15px;
     bottom: 0;

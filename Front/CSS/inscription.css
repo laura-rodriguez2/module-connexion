@@ -8,7 +8,7 @@
 }
 
 .lien_connexion{
-    color: #ffffff;
+    color: #1b2f31;
 }
 
 #form_inscription{
@@ -47,14 +47,15 @@
 }
 
 #bouton_inscri_inscription{
-    color: white;
-    border-color: aliceblue;
+    color: #8584ad;
+    background-color: #1b2f31;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
     font-size: large;
-    border-radius: 15px;
-    background-color: #8584ad;
-    padding: 15px 40px;
-    margin: 5%;
-    cursor: pointer;
+    font-weight: 600;
 }
 
 
