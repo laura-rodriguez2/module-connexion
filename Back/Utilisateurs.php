@@ -16,11 +16,11 @@ public function getBdd()
 
 public function getAllInfos()
     {
-        if(isset($_SESSION['email']))
+        if(isset($_SESSION['login']))
         {
             $tab=[];
-            $email = $_SESSION['email'];
-            $infos =  $this->getBdd()->query("SELECT * FROM users WHERE email='$email'");
+            $login = $_SESSION['login'];
+            $infos =  $this->getBdd()->query("SELECT * FROM users WHERE login='$login'");
             
             while($parameter = $infos->fetch())
             {
@@ -43,41 +43,41 @@ if (isset($_POST['submit'])){
     $bdd = $this->getBdd();
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
-    $email = htmlspecialchars($_POST['email']);
+    $login = htmlspecialchars($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
     $confirmation = htmlspecialchars ($_POST['password2']);
 
-if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email']) AND !empty($_POST['password']) AND !empty($_POST['password2'])){
-    $emaillenght = strlen($email); 
+if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['login']) AND !empty($_POST['password']) AND !empty($_POST['password2'])){
+    $loginlenght = strlen($login); 
 
 
-    $sql = "SELECT * FROM users WHERE email = ? ";
+    $sql = "SELECT * FROM users WHERE login = ? ";
     // on prépare la requête 
     $requete=$bdd->prepare($sql); 
     // on injecte les valeurs 
-    $requete->bindValue(1, $email, PDO::PARAM_STR);
+    $requete->bindValue(1, $login, PDO::PARAM_STR);
     // on exécute
-    $requete->execute(array($email));
+    $requete->execute(array($login));
 
-    $emailexist= $requete->rowCount();
+    $loginexist= $requete->rowCount();
     ($requete);
     $droits= 1;
 
-    if ($emaillenght > 255){
-    $erreur= "Votre email ne doit pas depasser 255 caractères !";  
+    if ($loginlenght > 255){
+    $erreur= "Votre login ne doit pas depasser 255 caractères !";  
     } 
     
 
     elseif($password !== $confirmation){
             $erreur="Les mots de passes sont differents !";
     }
-    if($emailexist !== 0){
-            $erreur = "email déjà pris !";
+    if($loginexist !== 0){
+            $erreur = "login déjà pris !";
     }
     if($erreur == ""){
         $hashage = password_hash($password, PASSWORD_BCRYPT);
-        $insertmbr= $bdd->prepare("INSERT INTO  users (nom, prenom, email, password, droits) VALUES(?, ?, ?, ?, ?)");
-        $insertmbr->execute(array($nom, $prenom, $email, $hashage, $droits));
+        $insertmbr= $bdd->prepare("INSERT INTO  users (nom, prenom, login, password, droits) VALUES(?, ?, ?, ?, ?)");
+        $insertmbr->execute(array($nom, $prenom, $login, $hashage, $droits));
         $erreur = "Votre compte à bien été créer !";
         header('location: connexion.php');
     }
@@ -95,18 +95,18 @@ if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email'
 
 
 
-public function connexion($emailconnect, $passwordconnect){
+public function connexion($loginconnect, $passwordconnect){
 
     if(isset($_POST['formconnexion']))
 {
-    $emailconnect = htmlspecialchars($_POST['emailconnect']);
+    $loginconnect = htmlspecialchars($_POST['loginconnect']);
     $passwordconnect = $_POST['passwordconnect'];
     $bdd = $bdd = $this->getBdd();
     
-    if(!empty($emailconnect) AND !empty($passwordconnect))
+    if(!empty($loginconnect) AND !empty($passwordconnect))
         {
-            $requeteutilisateur = $bdd->prepare("SELECT * FROM users WHERE email = ?"); 
-            $requeteutilisateur->execute(array($emailconnect)); 
+            $requeteutilisateur = $bdd->prepare("SELECT * FROM users WHERE login = ?"); 
+            $requeteutilisateur->execute(array($loginconnect)); 
             $result = $requeteutilisateur->fetchAll();   // Return TOUTE la requete ( tableau )
                 if (count($result) > 0){ // S'il trouve pas de même nom, il return mauvais nom
                     $sqlPassword = $result[0]['password'];  // Récupere le resultat du tableau (0)  /!\ SI PAS LE 0 ça marche pas /!\ et la colonne password
@@ -115,7 +115,7 @@ public function connexion($emailconnect, $passwordconnect){
                         $_SESSION['id'] = $result[0]['id'];
                         $_SESSION['nom'] = $result[0]['nom'];
                         $_SESSION['prenom'] = $result[0]['prenom'];
-                        $_SESSION['email'] = $result[0]['email'];
+                        $_SESSION['login'] = $result[0]['login'];
                         $_SESSION['droits'] = $result[0]['droits'];
                         header("Location: index.php");
                         }
@@ -139,7 +139,7 @@ if(isset($erreur)){
 }
 }
 
-public function profil($nom, $prenom, $email, $password){
+public function profil($nom, $prenom, $login, $password){
     $bdd = $this->getBdd();
 
 if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
@@ -175,19 +175,19 @@ if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
             $_SESSION['prenom'] = $newprenom;
     }
 
-    if (isset($_POST['newemail']) && !empty($_POST['newemail']) && $_POST['newemail'] != $infoutilisateur['email']) {
-        $email = $_POST['newemail'];
-        $requeteemail = $bdd->prepare("SELECT * FROM users WHERE email = ?");
-        $requeteemail->execute(array($email));
-        $emailexist = $requeteemail->rowCount();
+    if (isset($_POST['newlogin']) && !empty($_POST['newlogin']) && $_POST['newlogin'] != $infoutilisateur['login']) {
+        $login = $_POST['newlogin'];
+        $requetelogin = $bdd->prepare("SELECT * FROM users WHERE login = ?");
+        $requetelogin->execute(array($login));
+        $loginexist = $requetelogin->rowCount();
 
-        if ($emailexist !== 0) {
+        if ($loginexist !== 0) {
             $erreur = "Le mail existe déjà !";
         } else {
-            $newemail = htmlspecialchars($_POST['newemail']);
-            $insertemail = $bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
-            $insertemail->execute(array($newemail, $_SESSION['id']));
-            $_SESSION['email'] = $newemail;
+            $newlogin = htmlspecialchars($_POST['newlogin']);
+            $insertlogin = $bdd->prepare("UPDATE users SET login = ? WHERE id = ?");
+            $insertlogin->execute(array($newlogin, $_SESSION['id']));
+            $_SESSION['login'] = $newlogin;
             header('Location: profil.php');
         }
     }
@@ -217,9 +217,9 @@ if(isset($erreur)){
 
 
 // PAS ENCORE MAJ A PARTIR DE LA !!!
-public function admin($nom, $droits, $email){
+public function admin($nom, $droits, $login){
     $bdd = $this->getBdd();
-    $users = $bdd->query('SELECT users.`id` as idutilisateur, `nom`, `password`, `email`, `id_droits`,`nom` FROM `users` INNER JOIN droits ON droits.id = users.id_droits ORDER BY users.id ASC;');
+    $users = $bdd->query('SELECT users.`id` as idutilisateur, `nom`, `password`, `login`, `id_droits`,`nom` FROM `users` INNER JOIN droits ON droits.id = users.id_droits ORDER BY users.id ASC;');
     $listedroits = $bdd->query('SELECT * FROM droits');
     $lis = $listedroits->fetchAll();
     
@@ -257,19 +257,19 @@ if (isset($_POST['newnom']) && !empty($_POST['newnom'])) {
     }
 }
 
- // Fonction modifié l'email d'un utilisateur 
+ // Fonction modifié l'login d'un utilisateur 
 if (isset($_POST['newmail']) && !empty($_POST['newmail'])) {
     $idchange = $_POST['id'];
-    $email = $_POST['newmail'];
-    $requetemail = $bdd->prepare("SELECT * FROM users WHERE email = ?"); // SAVOIR SI LE MEME nom EST PRIS
-    $requetemail->execute(array($email));
-    $emailexist = $requetemail->rowCount(); // rowCount = Si une ligne existe = PAS BON
+    $login = $_POST['newmail'];
+    $requetlogin = $bdd->prepare("SELECT * FROM users WHERE login = ?"); // SAVOIR SI LE MEME nom EST PRIS
+    $requetlogin->execute(array($login));
+    $loginexist = $requetlogin->rowCount(); // rowCount = Si une ligne existe = PAS BON
 
-    if ($emailexist !== 0) {
-        $msg = "L'email existe déjà !";
+    if ($loginexist !== 0) {
+        $msg = "L'login existe déjà !";
     } else {
         $newmail = htmlspecialchars($_POST['newmail']);
-        $insertnom = $bdd->prepare("UPDATE users SET email = ? WHERE id = ?");
+        $insertnom = $bdd->prepare("UPDATE users SET login = ? WHERE id = ?");
         $insertnom->execute(array($newmail, $idchange));
         header('Location: admin.php');
         exit();

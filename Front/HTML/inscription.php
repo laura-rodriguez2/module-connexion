@@ -3,14 +3,14 @@ session_start();
 include('../../Back/Utilisateurs.php');
 
 if (isset($_POST['submit'])) {
-    if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['email']) and isset($_POST['password']) and isset($_POST['password2'])) {
+    if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['login']) and isset($_POST['password']) and isset($_POST['password2'])) {
         $nom = htmlspecialchars($_POST['nom']);
         $prenom = htmlspecialchars($_POST['prenom']);
-        $email = htmlspecialchars($_POST['email']);
+        $login = htmlspecialchars($_POST['login']);
         $password = htmlspecialchars($_POST['password']);
         $password2 = htmlspecialchars($_POST['password2']);
-        $user = new User($nom, $prenom, $email, $password, $password2);
-        $user_register = $user->register($nom, $prenom, $email, $password, $password2);
+        $user = new User($nom, $prenom, $login, $password, $password2);
+        $user_register = $user->register($nom, $prenom, $login, $password, $password2);
     }
 }
 
@@ -55,7 +55,7 @@ if (isset($erreur)) {
             </div>
             <div class="input">
                 <p>Login</p>
-                <input class="mail" id="email" type="text" name="email" required />
+                <input class="mail" id="login" type="text" name="login" required />
             </div>
 
             <div class="input">

@@ -6,7 +6,7 @@ include('../../Back/Utilisateurs.php');
 if (isset($_POST['formconnexion'])) {
 
     $user = new User;
-    $userconnect = $user->connexion($_POST['emailconnect'], $_POST['passwordconnect']);
+    $userconnect = $user->connexion($_POST['loginconnect'], $_POST['passwordconnect']);
     if ($userconnect == "Vous etes co !") {
         header('location: profil.php');
     } else {
@@ -44,7 +44,7 @@ if (isset($_POST['formconnexion'])) {
 
         <div class="connec">
             <p>Login</p>
-            <input type="login" class="box-input" name="emailconnect">
+            <input type="login" class="box-input" name="loginconnect">
         </div>
 
         <div class="connec">

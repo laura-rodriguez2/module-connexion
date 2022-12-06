@@ -46,9 +46,8 @@ $user = $request->fetchAll();
                     <tr>
                         Nom :<td> <?= $toto['nom']; ?></td><br>
                         Prénom :<td> <?= $toto['prenom']; ?></td><br>
-                        Login : <td><?= $toto['email']; ?></td><br>
-                        Droits :<td> <?= $toto['droits']; ?></td><br>
-                        
+                        Login : <td><?= $toto['login']; ?></td><br>
+                        Droits :<td> <?= $toto['droits']; ?></td><br> 
                     </tr>
                 <?php } ?>
             </tbody>
