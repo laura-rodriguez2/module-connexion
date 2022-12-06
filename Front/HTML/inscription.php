@@ -54,7 +54,7 @@ if (isset($erreur)) {
                 </div>
             </div>
             <div class="input">
-                <p>Email :</p>
+                <p>Login</p>
                 <input class="mail" id="email" type="text" name="email" required />
             </div>
 

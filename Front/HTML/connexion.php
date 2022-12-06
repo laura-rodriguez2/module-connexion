@@ -43,8 +43,8 @@ if (isset($_POST['formconnexion'])) {
     <form id="form_connec" method="POST" action="">
 
         <div class="connec">
-            <p>Email :</p>
-            <input type="email" class="box-input" name="emailconnect">
+            <p>Login</p>
+            <input type="login" class="box-input" name="emailconnect">
         </div>
 
         <div class="connec">

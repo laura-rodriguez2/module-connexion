@@ -2,11 +2,11 @@
 
 include('../../Back/Deco.php');
 
-$user = new Deco;
+$user_deco = new Deco;
 
 if (isset($_POST['submit_deco'])) {
 
-    $profil_deco = $user->disconnect();
+    $profil_deco = $user_deco->disconnect();
 }
 ?>
 
@@ -31,10 +31,12 @@ if (isset($_POST['submit_deco'])) {
 
             <?php
             if (isset($_SESSION['droits'])) {
-                // User classique 
+                // user classique 
                 if ($_SESSION['droits']) {
             ?>
-
+                <li class="nav-item">
+                    <a href="./profil.php" class="nav-link">Profil</a>
+                </li>
                     <form id="form_deco" action="" method="POST">
                         <input type="submit" class="btn" name="submit_deco" value="Déconnexion"><br>
                     </form>

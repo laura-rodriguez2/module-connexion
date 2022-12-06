@@ -167,7 +167,7 @@ public function connexion($emailconnect, $passwordconnect){
                         
             }
             else{
-                $erreur = "Mauvais nom !";
+                $erreur = "Mauvais Login !";
             }
         }
         // if (isset($_SESSION['droits']) == '2'){
