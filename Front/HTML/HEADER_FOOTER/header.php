@@ -1,8 +1,13 @@
 <?php
-// include('../../Back/bdd/bdd.php');
 
-// $bdd = get_pdo();
+include('../../Back/Deco.php');
 
+$user = new Deco;
+
+if (isset($_POST['submit_deco'])) {
+
+    $profil_deco = $user->disconnect();
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +23,6 @@
 
 <header>
     <nav class="navbar">
-        <!-- <a href="./index.php" class="nav-branding"><img src="../MEDIAS/Autres/logo2.png" height="60px"></a> -->
 
         <ul class="nav-menu">
             <li class="nav-item">
@@ -27,21 +31,26 @@
 
             <?php
             if (isset($_SESSION['droits'])) {
-                    // User classique 
-                if ($_SESSION['droits'] == 1) {
+                // User classique 
+                if ($_SESSION['droits']) {
             ?>
-                    <li class="nav-item">
-                        <a href="./profil.php" class="nav-link"><img src="../MEDIAS/Icons/user.png" alt="" height="40px" width="40px"></a>
-                    </li>
+
+                    <form id="form_deco" action="" method="POST">
+                        <input type="submit" class="btn" name="submit_deco" value="Déconnexion"><br>
+                    </form>
+
                 <?php }
             } else { ?>
-            <!-- Non connecté  -->
-                <li class="nav-item">
-                    <a href="./inscription.php" class="nav-link">Inscription</a>
-                </li>
+                <!-- Non connecté  -->
+
                 <li class="nav-item">
                     <a href="./connexion.php" class="nav-link">Connexion</a>
                 </li>
+                <li class="nav-item">
+                    <a href="./inscription.php" class="nav-link">Inscription</a>
+                </li>
+                </form>
+
         </ul>
     <?php } ?>
     <div class="hamburger">

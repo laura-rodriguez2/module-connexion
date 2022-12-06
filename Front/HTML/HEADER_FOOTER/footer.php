@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <link rel="stylesheet" href="../CSS/HEADER_FOOTER/footer.css">
-    <!-- <link rel="icon" href="../../MEDIAS/icon.png"> -->
 </head>
 
 
 <footer>
     <section id="footer_principal">
         <nav class="navbar_footer">
-            <!-- <a href="./index.php" class="nav-branding"><img src="../MEDIAS/Autres/logo2.png" height="60px"></a> -->
             <ul class="ul_footer">
                 <li>
                     <h2>Github :</h2>

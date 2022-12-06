@@ -1,9 +1,7 @@
 <?php
 session_start();
-// include('../../Model/bdd.php');
 include('../../Back/Utilisateurs.php');
 
-// if(validateEmail())
 if (isset($_POST['submit'])) {
     if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['email']) and isset($_POST['password']) and isset($_POST['password2'])) {
         $nom = htmlspecialchars($_POST['nom']);
@@ -74,8 +72,6 @@ if (isset($erreur)) {
 
             <p class="lr_h2">Déjà inscrit ? <a class="lien_connexion" href="connexion.php">Connectez-vous !</a></p>
         </form>
-
-        <script src="../../Back/js/verifications.js"></script>
 
     </main>
 
