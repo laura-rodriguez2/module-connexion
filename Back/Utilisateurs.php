@@ -1,6 +1,4 @@
 <?php 
-// include('../../Back/bdd/bdd.php');
-// require_once('../../Model/droits.php');
 class User{
 
 public $erreur;
@@ -69,45 +67,6 @@ if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email'
     $erreur= "Votre email ne doit pas depasser 255 caractères !";  
     } 
     
-    
-// EXEMPLE REQUETE PAS PREPAREE 
-
-// $sql = "SELECT * FROM users WHERE email = $email ";
-// $requete = $bdd->query($sql);
-// $user = $requete->fetchAll();
-
-// var_dump($user);
-
-
-
-// FIN EXEMPLE PAS PREPAPRE 
-//  EMAIL REGEX 
-// $max = 10;
-// $string = $_POST['email'];
-
-// Check only letters; the regex searches for anything that isn't a plain letter
-// if (preg_match('/[^a-zA-Z]/', $string)){
-//     $erreur= 'only letters are allowed';
-// } 
-
-// // Check a value is provided
-// $len = strlen($string);
-// if ($len == 0) {
-//     $erreur= 'you must provide a value';
-// }
-
-// // Check the string is long to long
-// if ($len > $max) {
-//    $erreur= 'the value cannot be longer than ' . $max;
-// }
-
-
-// fin email regex 
-
-
-    // if ($prenomlenght > 255){
-    //     $erreur= "Votre prenom ne doit pas depasser 255 caractères !";  
-    //     }  
 
     elseif($password !== $confirmation){
             $erreur="Les mots de passes sont differents !";
@@ -131,7 +90,7 @@ if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email'
     if(isset($erreur)){
             return $erreur;
     }
-    // Permet de faire un echo  a la page inscription
+    // Permet de faire un echo a la page inscription
 }
 
 
@@ -170,9 +129,6 @@ public function connexion($emailconnect, $passwordconnect){
                 $erreur = "Mauvais Login !";
             }
         }
-        // if (isset($_SESSION['droits']) == '2'){
-        //     header('Location: admin.php');
-        // }
     else
         {
         $erreur = "Tous les champs doivent être remplis !";
@@ -182,21 +138,6 @@ if(isset($erreur)){
     return $erreur;
 }
 }
-
-
-
-// public function disconnect()
-// {
-//     unset($_SESSION['id']);
-//     unset($_SESSION['nom']);
-//     unset($_SESSION['prenom']);
-// 	unset($_SESSION['email']);
-// 	unset($_SESSION['droits']);
-// 	session_destroy();
-// 	header('location: index.php');
-// }
-
-
 
 public function profil($nom, $prenom, $email, $password){
     $bdd = $this->getBdd();
@@ -228,17 +169,10 @@ if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
         $prenom = $_POST['newprenom'];
         $requeteprenom = $bdd->prepare("SELECT * FROM users WHERE prenom = ?");
         $requeteprenom->execute(array($prenom));
-        // $prenomexist = $requeteprenom->rowCount();
-
-        // if ($nomexist !== 0) {
-        //     $erreur = "Le nom existe déjà !";
-        // } else {
             $newprenom = htmlspecialchars($_POST['newprenom']);
             $insertprenom = $bdd->prepare("UPDATE users SET prenom = ? WHERE id = ?");
             $insertprenom->execute(array($newprenom, $_SESSION['id']));
             $_SESSION['prenom'] = $newprenom;
-            header('Location: profil.php');
-        // }
     }
 
     if (isset($_POST['newemail']) && !empty($_POST['newemail']) && $_POST['newemail'] != $infoutilisateur['email']) {
@@ -278,30 +212,6 @@ if(isset($erreur)){
     return $erreur;
 }
 }
-
-
-
-
-// PARTIE ADMIN
-
-// public function getAllInfos(){
-// 	if(isset($_SESSION['nom']))
-// 	{
-// 		$tab=[];
-// 		$nom = $_SESSION['nom'];
-// 		$infos =  $this->getBdd()->query("SELECT *FROM users WHERE nom='$nom'");
-		
-// 		while($parameter = $infos->fetch())
-// 		{
-// 			array_push($tab, $parameter);
-// 		}
-// 		return $tab;
-//     }
-//     else
-//     {
-//     return "Aucun utilisateur n'est connecté";
-//     }
-// }	
 
 
 
@@ -378,17 +288,7 @@ if (isset($_POST['select'])) {
 
 }
 }
-
 }
-
-
-    // if(preg_match("#jpeg|png#",$_FILES["photo"]["type"])){
-    //   // Upload accepté
-    // }
-    // else{
-    //     echo "Format du fichier invalide.";
-    // }
-
 
 ?>
 

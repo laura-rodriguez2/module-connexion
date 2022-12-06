@@ -8,6 +8,8 @@ if (isset($_POST['submit_deco'])) {
 
     $profil_deco = $user_deco->disconnect();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,7 @@ if (isset($_POST['submit_deco'])) {
             <?php
             if (isset($_SESSION['droits'])) {
                 // user classique 
-                if ($_SESSION['droits']) {
+                if ($_SESSION['droits'] == 1) {
             ?>
                 <li class="nav-item">
                     <a href="./profil.php" class="nav-link">Profil</a>
@@ -42,6 +44,17 @@ if (isset($_POST['submit_deco'])) {
                     </form>
 
                 <?php }
+                if ($_SESSION['droits'] == 2) {
+                    ?>
+                        <li class="nav-item">
+                            <a href="./profil.php" class="nav-link"><img src="../MEDIAS/Icons/user.png" alt="" height="40px" width="40px"></a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a href="./ADMIN/admin_accueil.php" class="nav-link">Admin</a>
+                        </li>
+    
+                    <?php }
             } else { ?>
                 <!-- Non connecté  -->
 
