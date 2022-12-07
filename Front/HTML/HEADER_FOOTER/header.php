@@ -1,5 +1,5 @@
 <?php
-
+// BOUTON DECONNEXION 
 include('../../Back/Deco.php');
 
 $user_deco = new Deco;
@@ -8,7 +8,6 @@ if (isset($_POST['submit_deco'])) {
 
     $profil_deco = $user_deco->disconnect();
 }
-
 
 ?>
 
@@ -36,25 +35,28 @@ if (isset($_POST['submit_deco'])) {
                 // user classique 
                 if ($_SESSION['droits'] == 1) {
             ?>
-                <li class="nav-item">
-                    <a href="./profil.php" class="nav-link">Profil</a>
-                </li>
+                    <li class="nav-item">
+                        <a href="./profil.php" class="nav-link">Profil</a>
+                    </li>
                     <form id="form_deco" action="" method="POST">
                         <input type="submit" class="btn" name="submit_deco" value="Déconnexion"><br>
                     </form>
 
                 <?php }
                 if ($_SESSION['droits'] == 2) {
-                    ?>
-                        <li class="nav-item">
-                            <a href="./profil.php" class="nav-link"><img src="../MEDIAS/Icons/user.png" alt="" height="40px" width="40px"></a>
-                        </li>
-    
-                        <li class="nav-item">
-                            <a href="./ADMIN/admin_accueil.php" class="nav-link">Admin</a>
-                        </li>
-    
-                    <?php }
+                ?>
+                    <li class="nav-item">
+                        <a href="./profil.php" class="nav-link"><img src="../MEDIAS/Icons/user.png" alt="" height="40px" width="40px"></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="./admin_gererUtilisateurs.php" class="nav-link">Admin</a>
+                    </li>
+                    <form id="form_deco" action="" method="POST">
+                        <input type="submit" class="btn" name="submit_deco" value="Déconnexion"><br>
+                    </form>
+
+                <?php }
             } else { ?>
                 <!-- Non connecté  -->
 

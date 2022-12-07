@@ -1,6 +1,4 @@
 <?php 
-// include('../../Back/bdd/bdd.php');
-// require_once('../../Model/droits.php');
 class Deco{
     public function disconnect()
     {

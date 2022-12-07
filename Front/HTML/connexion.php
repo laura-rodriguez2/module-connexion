@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('../../Back/bdd/bdd.php');
 include('../../Back/Utilisateurs.php');
 
 if (isset($_POST['formconnexion'])) {
@@ -44,7 +43,7 @@ if (isset($_POST['formconnexion'])) {
 
         <div class="connec">
             <p>Login</p>
-            <input type="login" class="box-input" name="loginconnect">
+            <input type="text" class="box-input" name="loginconnect">
         </div>
 
         <div class="connec">

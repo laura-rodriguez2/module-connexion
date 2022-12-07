@@ -64,7 +64,7 @@ $user = new User;
 
                 <div class="input">
                     <p>Nouveau login :</p>
-                    <input type="login" class="input" name="newemail" value="<?php echo $_SESSION['email'] ?>" />
+                    <input type="text" class="input" name="newemail" value="<?php echo $_SESSION['login'] ?>" />
                 </div>
                 <br>
                 <p>- Confirmations -</p>
